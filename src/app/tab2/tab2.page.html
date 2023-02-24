@@ -1,17 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Paramètres
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content padding>
+  <form (ngSubmit)="savePreferences()" #paramForm="ngForm">
+    <ion-item>
+      <ion-label position="stacked">Nombre total de zones</ion-label>
+      <ion-input type="number" [(ngModel)]="nombreZones" name="nombreZones" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Temps de brossage par zone (en secondes)</ion-label>
+      <ion-input type="number" [(ngModel)]="tempsBrossage" name="tempsBrossage" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Temps d'attente entre chaque zone (en secondes)</ion-label>
+      <ion-input type="number" [(ngModel)]="tempsAttente" name="tempsAttente" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Pour qui ? (20 caractères max)</ion-label>
+      <ion-input type="text" maxlength="20" [(ngModel)]="name" name="name"></ion-input>
+    </ion-item>
+    <ion-button type="submit"  [disabled]="!paramForm.form.valid">Sauvegarder</ion-button>
+  </form>
 </ion-content>
